@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+    <title>Diamond Price Predictor</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f3;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px 35px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #2a4d69;
+            font-size: 1.6rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #2a4d69;
+            box-shadow: 0 0 0 2px rgba(42, 77, 105, 0.2);
+        }
+        button {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            background-color: #2a4d69;
+            color: white;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.1s;
+        }
+
+        button:hover {
+            background-color: #1e3850;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-1px);
+        }
+        button:active {
+            transform: translateY(1px);
+            box-shadow: none;
+        }
+        h2 {
+            margin: 0;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        h2 span {
+            font-weight: bold;
+            color: #2a4d69;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Diamond Price Prediction</h1>
+
+        <form action="{{ url_for('predict') }}" method="post">
+
+            <input type="text" name="carat" placeholder="Carat" required="required" />
+            <input type="text" name="x" placeholder="X dimension" required="required" />
+            <input type="text" name="y" placeholder="Y dimension" required="required" />
+            <input type="text" name="z" placeholder="Z dimension" required="required" />
+
+            <input type="text" name="cut" placeholder="Cut (encoded)" required="required" />
+            <input type="text" name="color" placeholder="Color (encoded)" required="required" />
+            <input type="text" name="clarity" placeholder="Clarity (encoded)" required="required" />
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <h2>The predicted price is: <span>{{ predicted_text }}</span></h2>
+    </div>
+</body>
+</html>
